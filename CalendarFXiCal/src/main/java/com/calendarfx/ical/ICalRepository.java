@@ -67,31 +67,20 @@ public final class ICalRepository {
 
     public static void loadSources() throws IOException, ParserException {
 
-//        loadWebSource();
+        loadWebSource();
 
         if (true) { //familyCalendars.getCalendars().isEmpty()) {
             totalWorkProperty.set(10);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/nextspaceflight.com_l328q9n2alm03mdukb05504c44%40group.calendar.google.com/public/basic.ics", "Space Launches", Calendar.Style.STYLE1, communityCalendars);
-            createWebCalendar("https://i.cal.to/ical/2/fcbayern/bundesliga-spielplan/1406373c.bca6824f-04acfda3.ics", "Bayern München", Calendar.Style.STYLE2, communityCalendars);
+            String icsFileUrl = "https://www.feiertage-oesterreich.at/kalender-download/ics/schulferien-ooe.ics";
+            String icsFileUrl2 = "webcal://www.wien.gv.at/amtshelfer/feiertage/ics/feiertage.ics";
+            String calendarName = "Austrian Holidays";
+            Calendar.Style calendarStyle = Calendar.Style.STYLE2;
+            CalendarSource calendarSource = ICalRepository.getCommunityCalendarSource();
 
-//            createWebCalendar("https://cantonbecker.com/astronomy-calendar/astrocal.ics", "Moon / Astro", Calendar.Style.STYLE2, communityCalendars);
-//            workDoneProperty.set(2);
-//            createWebCalendar("http://ical.mac.com/ical/US32Holidays.ics", "US Holidays", Calendar.Style.STYLE3, communityCalendars);
-//            workDoneProperty.set(3);
-//            createWebCalendar("https://www.google.com/calendar/ical/6g08e17mnjao5k7ddftfvq5gs8%40group.calendar.google.com/public/basic.ics", "FC Liverpool", Calendar.Style.STYLE5, communityCalendars);
-//            workDoneProperty.set(4);
-//            createWebCalendar("https://www.google.com/calendar/ical/ohg8jr90apq8k0vili2fbs17to%40group.calendar.google.com/public/basic.ics", "Real Madrid", Calendar.Style.STYLE4, communityCalendars);
-//            workDoneProperty.set(5);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/flexcalendarfxdemo%40gmail.com/private-43f02ea9664382e80e6fbe0a541511ee/basic.ics", "Standard", Calendar.Style.STYLE1, familyCalendars);
-//            workDoneProperty.set(6);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/75bjnbr2qr5qgetav71tug2sec%40group.calendar.google.com/private-c6c6a59d97aa2806fe28cfbdb2e2957b/basic.ics", "Home", Calendar.Style.STYLE2, familyCalendars);
-//            workDoneProperty.set(7);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/5rj1uvaobtosjqoqqkpdlj01gg%40group.calendar.google.com/private-4dc56992aed93526cbab07da6cd4b69b/basic.ics", "School", Calendar.Style.STYLE3, familyCalendars);
-//            workDoneProperty.set(8);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/0itqq6d7pukf1tapbll3lbad5c%40group.calendar.google.com/private-7fb78a4b949cede8228d791faba9061e/basic.ics", "Sports", Calendar.Style.STYLE4, familyCalendars);
-//            workDoneProperty.set(9);
-//            createWebCalendar("https://calendar.google.com/calendar/ical/u6em5saa8omkamh68bl7fikclo%40group.calendar.google.com/private-bce22b1e9b43b632c7edfad45d677b59/basic.ics", "Work", Calendar.Style.STYLE5, familyCalendars);
-//            workDoneProperty.set(10);
+
+            ICalRepository.createWebCalendar(icsFileUrl, calendarName, calendarStyle, calendarSource);
+            ICalRepository.createWebCalendar(icsFileUrl2, calendarName, calendarStyle, calendarSource);
+
 
         }
     }
@@ -116,6 +105,7 @@ public final class ICalRepository {
             e.printStackTrace();
         }
     }
+
 
     public static CalendarSource getCommunityCalendarSource() {
         return communityCalendars;
@@ -204,6 +194,8 @@ public final class ICalRepository {
                 source.getCalendars().add(fcal);
             });
         }
+
+
     }
 
     private static class WebCalendarData implements Serializable {

@@ -34,9 +34,9 @@ public class WeatherApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Calendar zurich = new Calendar("Zurich");
+        Calendar steyr = new Calendar("Steyr");
         CalendarSource calendarSource = new CalendarSource("Weather");
-        calendarSource.getCalendars().addAll(zurich);
+        calendarSource.getCalendars().addAll(steyr);
 
         MonthSheetView sheetView = new MonthSheetView();
         sheetView.setPadding(new Insets(20));

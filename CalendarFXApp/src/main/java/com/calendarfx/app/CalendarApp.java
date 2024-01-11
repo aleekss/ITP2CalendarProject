@@ -37,34 +37,10 @@ public class CalendarApp extends Application {
         CalendarView calendarView = new CalendarView();
         calendarView.setEnableTimeZoneSupport(true);
 
-        Calendar katja = new Calendar("Katja");
-        Calendar dirk = new Calendar("Dirk");
-        Calendar philip = new Calendar("Philip");
-        Calendar jule = new Calendar("Jule");
-        Calendar armin = new Calendar("Armin");
-        Calendar birthdays = new Calendar("Birthdays");
-        Calendar holidays = new Calendar("Holidays");
 
-        katja.setShortName("K");
-        dirk.setShortName("D");
-        philip.setShortName("P");
-        jule.setShortName("J");
-        armin.setShortName("A");
-        birthdays.setShortName("B");
-        holidays.setShortName("H");
 
-        katja.setStyle(Style.STYLE1);
-        dirk.setStyle(Style.STYLE2);
-        philip.setStyle(Style.STYLE3);
-        jule.setStyle(Style.STYLE4);
-        armin.setStyle(Style.STYLE5);
-        birthdays.setStyle(Style.STYLE6);
-        holidays.setStyle(Style.STYLE7);
 
-        CalendarSource familyCalendarSource = new CalendarSource("Family");
-        familyCalendarSource.getCalendars().addAll(birthdays, holidays, katja, dirk, philip, jule, armin);
 
-        calendarView.getCalendarSources().setAll(familyCalendarSource);
         calendarView.setRequestedTime(LocalTime.now());
 
         StackPane stackPane = new StackPane();

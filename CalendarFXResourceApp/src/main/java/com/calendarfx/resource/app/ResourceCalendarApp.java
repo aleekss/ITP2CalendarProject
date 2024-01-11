@@ -73,10 +73,10 @@ public class ResourceCalendarApp extends Application {
         });
 
         resourceCalendarView.setHeaderFactory(resource -> {
-            Label label1 = new Label("IG-TR");
-            Label label2 = new Label("29.000");
-            Label label3 = new Label("13.200");
-            Label label4 = new Label("92 (CPC)");
+            Label label1 = new Label("");
+            Label label2 = new Label("");
+            Label label3 = new Label("");
+            Label label4 = new Label("");
 
             label1.setStyle("-fx-font-family: Monospaced; -fx-font-style: bold;");
             label2.setStyle("-fx-font-family: Monospaced; -fx-text-fill: blue; -fx-font-style: bold;");
@@ -149,8 +149,8 @@ public class ResourceCalendarApp extends Application {
                  * the right of a day view with a given width. This is needed to support
                  * "vertical bars".
                  */
-                // entryView.setPrefWidth(10);
-                // entryView.setAlignmentStrategy(AlignmentStrategy.ALIGN_LEFT);
+                 entryView.setPrefWidth(10);
+                 entryView.setAlignmentStrategy(EntryViewBase.AlignmentStrategy.ALIGN_LEFT);
 
                 /* PSI:
                  * Here you can experiment with the new height layout strategy that allows
@@ -158,7 +158,7 @@ public class ResourceCalendarApp extends Application {
                  * of a height determined by their start and end time. This is required to
                  * implement the Event Monitoring Panel.
                  */
-                // entryView.setHeightLayoutStrategy(HeightLayoutStrategy.COMPUTE_PREF_SIZE);
+                 entryView.setHeightLayoutStrategy(EntryViewBase.HeightLayoutStrategy.COMPUTE_PREF_SIZE);
 
                 if (iconsRandom.nextDouble() > .7) {
                     final FontIcon node = new FontIcon(FontAwesome.ERASER);
@@ -251,37 +251,15 @@ public class ResourceCalendarApp extends Application {
         }
 
         public void generateBaseEntries() {
-            createEntries(LocalDate.now().minusDays(2), Entry::new);
-            createEntries(LocalDate.now().minusDays(1), Entry::new);
-            createEntries(LocalDate.now(), Entry::new);
-            createEntries(LocalDate.now().plusDays(1), Entry::new);
-            createEntries(LocalDate.now().plusDays(2), Entry::new);
+            // No entries are created in this modified version
         }
 
         public void generateTopEntries() {
-            createEntries(LocalDate.now(), TopEntry::new);
+            // No entries are created in this modified version
         }
 
         private <T extends Entry<?>> void createEntries(LocalDate startDate, Supplier<T> entryProducer) {
-            for (int j = 0; j < 5 + (int) (dataRandom.nextDouble() * 4); j++) {
-                T entry = entryProducer.get();
-                entry.changeStartDate(startDate);
-                entry.changeEndDate(startDate);
-
-                String s = entry.getClass().getSimpleName();
-                entry.setTitle(s + (j + 1));
-
-                int hour = (int) (dataRandom.nextDouble() * 23);
-                int durationInHours = Math.max(1, Math.min(24 - hour, (int) (dataRandom.nextDouble() * 4)));
-
-                LocalTime startTime = LocalTime.of(hour, 0);
-                LocalTime endTime = startTime.plusHours(durationInHours);
-
-                entry.changeStartTime(startTime);
-                entry.changeEndTime(endTime);
-
-                entry.setCalendar(this);
-            }
+            // No entries are created in this modified version
         }
     }
 
@@ -289,7 +267,6 @@ public class ResourceCalendarApp extends Application {
         launch(args);
     }
 
-    public static class TopEntry<T> extends Entry<T>
-    {
+    public static class TopEntry<T> extends Entry<T> {
     }
 }
